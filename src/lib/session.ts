@@ -1,0 +1,8 @@
+import { headers } from "next/headers";
+import { auth } from "./auth";
+
+/** Returns the signed-in user for a server component / route, or null. */
+export async function getCurrentUser() {
+  const session = await auth.api.getSession({ headers: await headers() });
+  return session?.user ?? null;
+}
